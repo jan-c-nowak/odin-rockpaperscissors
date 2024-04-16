@@ -1,6 +1,5 @@
 //Play Rock, Paper, Scissors with computer
 
-
 const choices = ["Rock", "Paper", "Scissors"];
 
 function getRandomInt(max) {
@@ -29,13 +28,35 @@ function playRound(playerSelection, computerSelection){
     if(playerSelection === computerSelection) {return ["It's a draw!", "DRAW"]};
 }
 
+const btnRock = document.querySelector("#rock");
+const btnPaper = document.querySelector("#paper");
+const btnScissors = document.querySelector("#scissors");
+
+btnRock.addEventListener("click", () => {
+    const result = playRound("rock", getComputerChoice());
+    const roundEnd = new CustomEvent("roundEnd", {detail: result});
+    btnRock.dispatchEvent(roundEnd);
+})
+
+btnPaper.addEventListener("click", () => {
+    const result = playRound("paper", getComputerChoice());
+    const roundEnd = new CustomEvent("roundEnd", {detail: result});
+    btnRock.dispatchEvent(roundEnd);
+})
+
+btnScissors.addEventListener("click", () => {
+    const result = playRound("scissors", getComputerChoice());
+    const roundEnd = new CustomEvent("roundEnd", {detail: result});
+    btnRock.dispatchEvent(roundEnd);
+})
+
 function playGame(){
-    let userScore = 0;
-    let machineScore = 0;
+    userScore = 0;
+    machineScore = 0;
 
     
 
-    
+
 }
 
 playGame();
