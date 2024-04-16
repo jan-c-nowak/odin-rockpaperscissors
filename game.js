@@ -33,20 +33,9 @@ function playGame(){
     let userScore = 0;
     let machineScore = 0;
 
-    for(let i=0; i<5; i++){
-        playerSelection = prompt("Type either rock, paper or scissors", "Rock");
-        results = playRound(playerSelection, getComputerChoice());
+    
 
-        if(results[1] === "WIN"){
-            userScore++;
-        }
-        else if(results[1] ==="LOSE"){
-            machineScore++;
-        }
-
-        console.log(results[0]);
-    }
-    console.log(`Your points: ${userScore}, computer points: ${machineScore}`);
+    
 }
 
 playGame();
