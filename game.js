@@ -31,32 +31,45 @@ function playRound(playerSelection, computerSelection){
 const btnRock = document.querySelector("#rock");
 const btnPaper = document.querySelector("#paper");
 const btnScissors = document.querySelector("#scissors");
+const divResults = document.querySelector("#results")
 
 btnRock.addEventListener("click", () => {
     const result = playRound("rock", getComputerChoice());
     const roundEnd = new CustomEvent("roundEnd", {detail: result});
-    btnRock.dispatchEvent(roundEnd);
+    divResults.dispatchEvent(roundEnd);
 })
 
 btnPaper.addEventListener("click", () => {
     const result = playRound("paper", getComputerChoice());
     const roundEnd = new CustomEvent("roundEnd", {detail: result});
-    btnRock.dispatchEvent(roundEnd);
+    divResults.dispatchEvent(roundEnd);
 })
 
 btnScissors.addEventListener("click", () => {
     const result = playRound("scissors", getComputerChoice());
     const roundEnd = new CustomEvent("roundEnd", {detail: result});
-    btnRock.dispatchEvent(roundEnd);
+    divResults.dispatchEvent(roundEnd);
 })
+
+
 
 function playGame(){
     userScore = 0;
     machineScore = 0;
+    roundCount = 0;
 
-    
-
-
+    divResults.addEventListener("roundEnd", (e) => {
+        switch(e.detail[1]){
+            case "WIN":
+                userScore++;
+                break;
+            case "LOSE":
+                machineScore++;
+                break;
+        } 
+        roundCount++;
+        divResults.textContent = e.detail[0] + ` User score: ${userScore}, Computer Score: ${machineScore}, Round: ${roundCount}`;
+    });
 }
 
 playGame();
